@@ -1,0 +1,32 @@
+{
+  "name": "vout",
+  "version": "0.0.1",
+  "description": "Voting app (Project for Free Code Camp)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabuladze/vout.git"
+  },
+  "keywords": [
+    "vote",
+    "mean",
+    "vout"
+  ],
+  "author": "Giorgi Abuladze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabuladze/vout/issues"
+  },
+  "homepage": "https://github.com/gabuladze/vout#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongoose": "^4.5.3",
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0",
+    "pug": "^2.0.0-beta3"
+  }
+}
