@@ -1,25 +1,14 @@
-nav
-  div(class="nav-wrapper container")
-    a(href="#", class="brand-logo") Logo
-    a(href="#", data-activates="mobile-demo", class="button-collapse")
-      i(class="material-icons") menu
-
-    ul(class="right hide-on-med-and-down")
-      li
-        a(href="#") Polls
-      li
-        a(href="#") My Polls
-      li
-        a(href="#") Add Poll
-      li
-        a(href="#", class="waves-effect waves-light btn") Sign in with Google
-
-    ul(class="side-nav" id="mobile-demo")
-      li
-        a(href="#") Polls
-      li
-        a(href="#") My Polls
-      li
-        a(href="#") Add Poll
-      li
-        a(href="#", class="waves-effect waves-light btn") Sign in with Google
+nav(class="navbar navbar-default")
+  div(class="container-fluid")
+    div(class="navbar-header")
+      button(type="button", class="navbar-toggle collapsed", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false")
+        span(class="sr-only") Toggle navigation
+        span(class="icon-bar")
+        span(class="icon-bar")
+        span(class="icon-bar")
+      a(class="navbar-brand", href="#") Vout
+    div(class="collapse navbar-collapse", id="bs-example-navbar-collapse-1")
+      ul(class="nav navbar-nav navbar-right")
+        li: a(href="/") Home
+        li: a(href="/login") Log In
+        li: a(href="/signup") Sign Up
