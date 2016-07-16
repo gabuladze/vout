@@ -4,13 +4,12 @@ var Schema = mongoose.Schema;
 var dbUrl = process.env.MONGOLAB_URI;
 mongoose.connect(dbUrl);
 
-var pollOptionSchema = new Schema({
-  option: String,
-  votes: Number
+var userSchema = new Schema({
+  name: String,
+  googleId: String,
+  photoUrl: String
 });
 
-var pollSchema = new Schema({
-  name: String,
-  options: [pollOptionSchema],
-  user_id: Number
-});
+var User = mongoose.model('User', userSchema);
+
+module.exports = User;

@@ -10,5 +10,7 @@ nav(class="navbar navbar-default")
     div(class="collapse navbar-collapse", id="bs-example-navbar-collapse-1")
       ul(class="nav navbar-nav navbar-right")
         li: a(href="/") Home
-        li: a(href="/login") Log In
-        li: a(href="/signup") Sign Up
+        if current_user == null
+          li: a(href="/oauth/google") Sign In with Google
+        else
+          li: a(href="/logout") Log Out
