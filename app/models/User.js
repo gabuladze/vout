@@ -1,13 +1,14 @@
 'use strict';
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var dbUrl = process.env.MONGOLAB_URI;
-mongoose.connect(dbUrl);
+var Poll = require('./Poll.js');
 
 var userSchema = new Schema({
   name: String,
   googleId: String,
-  photoUrl: String
+  photoUrl: String,
+  polls: [{type: Schema.Types.ObjectId, ref:"Poll"}]
 });
 
 var User = mongoose.model('User', userSchema);

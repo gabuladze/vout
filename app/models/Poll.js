@@ -1,8 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var dbUrl = process.env.MONGOLAB_URI;
-mongoose.connect(dbUrl);
+var User = require('./User.js');
 
 var pollOptionSchema = new Schema({
   option: String,
@@ -12,5 +11,9 @@ var pollOptionSchema = new Schema({
 var pollSchema = new Schema({
   name: String,
   options: [pollOptionSchema],
-  user_id: Number
+  _creator: {type: Schema.Types.ObjectId, ref: "User"}
 });
+
+var Poll = mongoose.model('Poll', pollSchema);
+
+module.exports = Poll;

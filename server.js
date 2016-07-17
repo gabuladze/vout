@@ -6,13 +6,19 @@ var port = process.env.PORT || 3500;
 var routes = require('./app/routes/routes.js');
 var configPassport = require('./app/config/passport.js')(passport);
 var passport = require('passport');
+var flash = require('flash');
 var session = require('express-session');
+var mongoose = require('mongoose');
+var dbUrl = process.env.MONGOLAB_URI;
+mongoose.connect(dbUrl);
 
 app.use(session({
   secret: 'muchSecretSoSessionWOW',
   saveUninitialized: true,
   resave: true
 }));
+
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
