@@ -38,7 +38,7 @@ router.route("/polls/view/:id")
   .get(pollController.view);
 
 router.route("/poll/:id/vote")
-  .post(pollController.vote);
+  .post(parser, pollController.vote);
 
 
 module.exports = router;
