@@ -8,7 +8,6 @@ var userSchema = new Schema({
   name: String,
   googleId: String,
   photoUrl: String,
-  polls: [{type: Schema.Types.ObjectId, ref:"Poll"}]
 });
 
 var User = mongoose.model('User', userSchema);

@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var parser = bodyParser.urlencoded({extended: false});
 var passport = require('passport');
 var loggedIn = require('../middlewares/loggedin.js');
+var checkId = require('../middlewares/checkId.js');
 var pollController = require('../controllers/pollController.js');
 var authController = require('../controllers/authController.js');
 
@@ -28,6 +29,16 @@ router.route("/polls/new")
   .all(loggedIn)
   .get(pollController.new)
   .post(parser, pollController.create);
+
+router.route("/polls/user/:userid")
+  .all(loggedIn, checkId)
+  .get(pollController.userPolls);
+
+router.route("/polls/view/:id")
+  .get(pollController.view);
+
+router.route("/poll/:id/vote")
+  .post(pollController.vote);
 
 
 module.exports = router;

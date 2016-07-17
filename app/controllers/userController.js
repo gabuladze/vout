@@ -12,7 +12,7 @@ exports.save = function(req, userProfile, done) {
         user.save(function(err) {
           if(err) {
             console.log(err);
-            req.flash(err);
+            req.flash("danger",err);
             res.redirect('/');
           } else {
             return done(err, user);
