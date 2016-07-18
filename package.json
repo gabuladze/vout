@@ -1,6 +1,6 @@
 {
   "name": "vout",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Voting app (Project for Free Code Camp)",
   "main": "server.js",
   "scripts": {
