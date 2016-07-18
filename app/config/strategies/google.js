@@ -8,8 +8,8 @@ var appUrl = process.env.APP_URL || 'http://localhost:3500';
 
 module.exports = function() {
   passport.use(new GoogleStrategy({
-    clientID: process.env.id,
-    clientSecret: process.env.secret,
+    clientID: process.env.ID,
+    clientSecret: process.env.SECRET,
     callbackURL: appUrl + "/oauth/google/callback",
     passReqToCallback: true
   },
