@@ -8,6 +8,7 @@ var passport = require('passport');
 var loggedIn = require('../middlewares/loggedin.js');
 var checkId = require('../middlewares/checkId.js');
 var pollController = require('../controllers/pollController.js');
+var votesController = require('../controllers/votesController.js');
 var authController = require('../controllers/authController.js');
 
 router.route("/")
@@ -38,7 +39,7 @@ router.route("/polls/view/:id")
   .get(pollController.view);
 
 router.route("/poll/:id/vote")
-  .post(parser, pollController.vote);
+  .post(parser, votesController.add);
 
 
 module.exports = router;

@@ -59,6 +59,7 @@ exports.view = function(req, res) {
   var poll = Poll.find({ _id: pollId })
     .select({
       title: 1,
+      _creator: 1,
       options: 1
     })
     .lean(true)
@@ -67,32 +68,17 @@ exports.view = function(req, res) {
         req.flash("danger", err);
         res.redirect('/');
       } else {
-        poll = poll[0];
-        res.render('polls/view', poll);
+        var data = {
+          title: poll[0].title,
+          poll: poll[0],
+          user: req.user || null,
+          author: (req.user && String(poll[0]._creator) == String(req.user._id)) ? true : false
+        };
+        res.render('polls/view', data);
       }
     })
 };
 
 exports.userPolls = function(req, res) {
 
-}
-
-exports.vote = function(req, res) {
-  var pollId = req.params.id;
-  var optionId = req.body.option.substring(1, req.body.option.length - 1);
-
-  Poll.update({
-    _id: pollId,
-    "options._id": optionId
-  },
-  {
-    $inc: {
-      "options.$.votes": 1
-    }
-  }, function(err, result) {
-      console.log(result);
-      if(err) throw err;
-      req.flash('success', 'Vote added');
-      res.redirect('back');
-    })
 }
