@@ -8,7 +8,7 @@ block content
       h2= poll.title
   div(class="row")
     div(class="col-lg-6", id="forms")
-      form(action="/poll/"+poll._id+"/vote", method="post")
+      form(action="/poll/"+poll._id+"/vote/create", method="post")
         div(class="form-group")
           label(for="option") I'd like to vote for:
           select(class="form-control", name="option")

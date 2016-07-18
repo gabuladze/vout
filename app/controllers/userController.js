@@ -1,7 +1,9 @@
 'use strict';
 
+// Import user model
 var User = require('../models/User.js');
 
+// Save user
 exports.save = function(req, userProfile, done) {
   User.findOne({googleId: userProfile.googleId}, function(err, user) {
     if (err) {

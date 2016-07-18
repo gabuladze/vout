@@ -1,7 +1,12 @@
 'use strict';
+
+// Import poll model
 var Poll = require('../models/Poll.js');
 
+// Homepage
+// example.com/ (GET)
 exports.index = function(req, res) {
+  //Get all polls
   var polls = Poll.find()
     .select({
       title: 1,
@@ -25,6 +30,8 @@ exports.index = function(req, res) {
     });
 };
 
+// Add new poll
+// example.com/polls/new (GET)
 exports.new = function(req, res, next) {
   var data = {
     title: 'New Poll',
@@ -33,12 +40,15 @@ exports.new = function(req, res, next) {
   res.render('polls/new', data);
 }
 
+// Create poll
+// example.com/polls/create (POST)
 exports.create = function(req, res) {
   var poll = new Poll({
     title: req.body.title,
     options: [],
     _creator: req.user._id
    });
+  // add poll options
   req.body.options.forEach(function(option) {
     poll.options.addToSet({ name: option });
   });
@@ -54,6 +64,8 @@ exports.create = function(req, res) {
   })
 };
 
+// View poll
+// example.com/polls/view/:id (GET)
 exports.view = function(req, res) {
   var pollId = req.params.id;
   var poll = Poll.find({ _id: pollId })

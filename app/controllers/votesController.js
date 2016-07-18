@@ -1,14 +1,19 @@
 'user strict';
 
+// Import poll model
 var Poll = require('../models/Poll.js');
 
+//Add vote to poll
+// example.com/poll/:id/vote/create (POST)
 exports.add = function(req, res) {
+  // get poll id from parameters
   var pollId = req.params.id;
 
+  // Add new subdoc to given poll if
+  // requested
   if (req.body.option === 'custom') {
     Poll.findById(pollId, 'options')
       .exec(function(err, poll) {
-        console.log(poll);
         if (err) throw err;
         poll.options.push({
           name: req.body.customOption,
@@ -36,7 +41,6 @@ exports.add = function(req, res) {
         "options.$.votes": 1
       }
     }, function(err, result) {
-      console.log(result);
       if(err) throw err;
       req.flash('success', 'Vote added');
       res.redirect('back');
