@@ -4,19 +4,16 @@ if(typeof pollOptions !== 'undefined') {
   var values = [];
   var bgcolors = [];
 
-  var dynamicColors = function() {
-      var r = Math.floor(Math.random() * 255);
-      var g = Math.floor(Math.random() * 255);
-      var b = Math.floor(Math.random() * 255);
-      return "rgb(" + r + "," + g + "," + b + ")";
-  }
   pollOptions.forEach(function(option) {
     labels.push(option.name);
     values.push(option.votes);
   });
 
   values.forEach(function(val) {
-    bgcolors.push(dynamicColors());
+    bgcolors.push(randomColor({
+      luminosity: 'bright',
+      hue: 'red'
+    }));
   });
 
   new Chart(ctx, {
@@ -30,6 +27,13 @@ if(typeof pollOptions !== 'undefined') {
         }
       ]
     },
-
+    options: {
+      animation: {
+        animateScale: true
+      },
+      legend: {
+        position: 'bottom',
+      }
+    }
   });
 }

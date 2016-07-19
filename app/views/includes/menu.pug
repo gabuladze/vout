@@ -1,4 +1,4 @@
-nav(class="navbar navbar-inverse")
+nav(class="navbar navbar-inverse navbar-fixed-top")
   div(class="container-fluid")
     div(class="navbar-header")
       button(type="button", class="navbar-toggle collapsed", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false")
@@ -6,7 +6,7 @@ nav(class="navbar navbar-inverse")
         span(class="icon-bar")
         span(class="icon-bar")
         span(class="icon-bar")
-      a(class="navbar-brand", href="#") Vout
+      a(class="navbar-brand", href="/") Vout
     div(class="collapse navbar-collapse", id="bs-example-navbar-collapse-1")
       ul(class="nav navbar-nav navbar-right")
         li
@@ -23,7 +23,7 @@ nav(class="navbar navbar-inverse")
               img(src= user.photoUrl, class="img-circle img-profile")/
               span(class="caret")
             ul(class="dropdown-menu")
-              li: a(href="/polls/" + user.id) My polls
+              li: a(href="/polls/user/" + user.id) My polls
               li: a(href="/polls/new") Add poll
               li(role="separator", class="divider")
               li: a(href="/logout") Log Out

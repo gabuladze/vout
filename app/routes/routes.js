@@ -53,7 +53,7 @@ router.route("/polls/view/:id")
   .get(pollController.view);
 
 // Display polls that belong to logged in user
-router.route("/polls/user/:userid")
+router.route("/polls/user/:id")
   .all(loggedIn, checkId)
   .get(pollController.userPolls);
 

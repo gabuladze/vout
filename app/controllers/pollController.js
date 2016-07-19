@@ -80,9 +80,11 @@ exports.view = function(req, res) {
         req.flash("danger", err);
         res.redirect('/');
       } else {
+        var app_url = process.env.APP_URL || "http://localhost:3500";
         var data = {
           title: poll[0].title,
           poll: poll[0],
+          pageUrl: app_url + '/polls/view/' + poll[0]._id,
           user: req.user || null,
           author: (req.user && String(poll[0]._creator) == String(req.user._id)) ? true : false
         };
@@ -91,6 +93,30 @@ exports.view = function(req, res) {
     })
 };
 
+// Display polls that belong to user
+// example.com/polls/user/:userid (GET)
 exports.userPolls = function(req, res) {
+  var userId = req.params.id;
 
+  Poll.find({
+    _creator: userId
+  })
+  .select({
+    title: 1,
+    _id: 1
+  })
+  .lean(true)
+  .exec(function(err, polls) {
+    if (err) {
+      req.flash('danger', JSON.stringify(err));
+      res.redirect('/');
+    }
+    var data = {
+      title: "My Polls",
+      user: req.user || null,
+      polls: polls
+    };
+
+    res.render('polls/user', data);
+  })
 }

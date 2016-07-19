@@ -20,6 +20,11 @@ block content
             div(class="form-group", class="hidden", id="customOption")
               input(type="text", name="customOption", id="optionInput", class="form-control", placeholder="Put your option here")
         button(type="submit", class="btn btn-default") Submit
+      hr
+      div(class="social")
+        div(class="g-plusone", data-annotation="none", data-href=pageUrl)
+        a(href="https://twitter.com/intent/tweet?url="+pageUrl, class="btn btn-sm btn-default btn-twitter", target="_blank")
+          i(class="fa fa-twitter")
       if author
         hr
         a(href="/polls/delete/"+poll._id, class="btn btn-danger")

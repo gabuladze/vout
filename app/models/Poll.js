@@ -6,6 +6,7 @@ var User = require('./User.js');
 var pollOptionSchema = new Schema({
   name: {
     type: String,
+    maxlength: 60,
     required: true,
     unique: true
   },
