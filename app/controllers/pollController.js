@@ -21,7 +21,7 @@ exports.index = function(req, res) {
         res.redirect('/')
       } else {
         var data = {
-          title: 'Index',
+          title: 'All Polls',
           user: req.user || null,
           polls: polls
         };

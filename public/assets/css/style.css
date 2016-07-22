@@ -1,5 +1,7 @@
 * {border-radius: 0 !important;}
-body {padding-top: 70px !important;}
+html {box-sizing: border-box;}
+body {padding-top: 70px !important; background-color: #f1f1f1 !important;}
+body, html { height: 100%;}
 .img-circle {
   border-radius: 50% !important;
 }
@@ -30,4 +32,24 @@ a.dropdown-toggle img {
 .btn-twitter i {
   font-size: 15px;
   margin-top: 0px !important;
+}
+section {
+  min-height: calc(100% - 1px);
+}
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: 10px;
+  background-color: #201f1f;
+  color: #f2f2f2;
+  text-align: center;
+}
+footer a {
+  color: #ededed;
+}
+footer a:hover {
+  text-decoration: none;
+  color: #d6d5d5;
 }

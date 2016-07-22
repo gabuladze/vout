@@ -12,15 +12,17 @@ html
   body
     include ./includes/menu.pug
     include ./includes/flashMsg.pug
-    div(class="container-fluid")
-      block content
-      div(class="row")
-        div(class="col-lg-12")
-          p Coded by Giorgi Abuladze
-        script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.1.min.js")
-        script(type="text/javascript", src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin="anonymous")
-        script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.min.js")
-        script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.4.4/randomColor.min.js")
-        script(type="text/javascript", src="https://apis.google.com/js/platform.js", async, defer)
-        script(type="text/javascript", src="../../assets/js/script.js")
-        script(type="text/javascript", src="../../assets/js/charts.js")
+    block content
+    footer
+      div(class="container-fluid")
+        div(class="row")
+          div(class="col-lg-12")
+            p Coded by Giorgi Abuladze |
+              a(href="https://github.com/gabuladze/vout", target="_blank") Github repo
+          script(type="text/javascript", src="https://code.jquery.com/jquery-2.1.1.min.js")
+          script(type="text/javascript", src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin="anonymous")
+          script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.min.js")
+          script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.4.4/randomColor.min.js")
+          script(type="text/javascript", src="https://apis.google.com/js/platform.js", async, defer)
+          script(type="text/javascript", src="../../assets/js/script.js")
+          script(type="text/javascript", src="../../assets/js/charts.js")

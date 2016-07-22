@@ -1,10 +1,11 @@
 extends ../layout.pug
 
 block content
-  div(class="row")
-    div(class="col-lg-12")
-      h1= title
-      div(class="list-group")
-        for poll in polls
-          a(href="/polls/view/"+poll.id, class="list-group-item")
-            strong= poll.title
+  div(class="container-fluid")
+    div(class="row")
+      div(class="col-lg-12")
+        h1= title
+        div(class="list-group")
+          for poll in polls
+            a(href="/polls/view/"+poll.id, class="list-group-item")
+              strong= poll.title

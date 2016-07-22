@@ -1,5 +1,8 @@
 while message = flash.shift()
-  div(class="alert alert-dismissible alert-"+message.type role="alert")
-    button(type="button" class="close" data-dismiss="alert" aria-label="Close")
-      span(aria-hidden="true") &times;
-    strong= message.message
+  div(class="container-fluid")
+    div(class="row")
+      div(class="col-lg-12")
+        div(class="alert alert-dismissible alert-"+message.type role="alert")
+          button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+            span(aria-hidden="true") &times;
+          strong= message.message
