@@ -58,7 +58,7 @@ exports.create = function(req, res) {
       req.flash('danger', err);
       res.redirect('back');
     } else {
-      req.flash('success', 'Successfully added!');
+      req.flash('success', 'Your poll has been added! You can now access it from "My Polls" page or from the list below.');
       res.redirect('/');
     }
   })

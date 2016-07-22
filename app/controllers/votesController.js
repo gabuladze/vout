@@ -25,7 +25,7 @@ exports.add = function(req, res) {
             req.flash('danger', JSON.stringify(err));
             res.redirect('/');
           }
-          req.flash('success', 'Vote Added');
+          req.flash('success', 'Your vote has been added!');
           res.redirect('back');
         })
       })
@@ -42,7 +42,7 @@ exports.add = function(req, res) {
       }
     }, function(err, result) {
       if(err) throw err;
-      req.flash('success', 'Vote added');
+      req.flash('success', 'Your vote has been added.');
       res.redirect('back');
     });
   }
