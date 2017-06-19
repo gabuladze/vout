@@ -1,15 +1,16 @@
 'use strict';
 
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 3500;
-var routes = require('./api/rouzztes/routes.js');
-var configPassport = require('./api/config/passport.js')(passport);
-var passport = require('passport');
-var flash = require('flash');
-var session = require('express-session');
-var mongoose = require('mongoose');
-var dbUrl = process.env.MONGOLAB_URI;
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3500;
+const routes = require('./api/rouzztes/routes.js');
+const configPassport = require('./api/config/passport.js')(passport);
+const passport = require('passport');
+const flash = require('flash');
+const session = require('express-session');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dbUrl = process.env.MONGOLAB_URI;
 mongoose.connect(dbUrl);
 
 app.use(session({
@@ -19,6 +20,8 @@ app.use(session({
 }));
 
 app.use(flash());
+
+app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
