@@ -3,3 +3,10 @@
   color: #FFFFFF !important;
 }
 .google-login:hover {background-color: #ee3b37 !important;}
+.img-circle {
+  border-radius: 50% !important;
+}
+a.dropdown-toggle {padding-top: 0 !important; padding-bottom: 0 !important;}
+a.dropdown-toggle img {
+  margin-left: 10px !important;
+}
