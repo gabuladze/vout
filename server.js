@@ -2,14 +2,15 @@
 
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3500;
-const routes = require('./api/rouzztes/routes.js');
+const routes = require('./api/routes/routes.js');
 const configPassport = require('./api/config/passport.js')(passport);
 const passport = require('passport');
-const flash = require('flash');
+//const flash = require('flash');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
+// DB
 const dbUrl = process.env.MONGOLAB_URI;
 mongoose.connect(dbUrl);
 
@@ -19,7 +20,7 @@ app.use(session({
   resave: true
 }));
 
-app.use(flash());
+//app.use(flash());
 
 app.use(cors());
 
@@ -27,10 +28,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(routes);
+
 app.use(express.static('./public'));
 
-app.set('views', './api/views');
-app.set('view engine', 'pug');
+// app.set('views', './api/views');
+// app.set('view engine', 'pug');
+
+
+const port = process.env.PORT || 3500;
 
 app.listen(port, function() {
   console.log("Magic on port " + port);
