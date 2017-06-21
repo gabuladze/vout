@@ -9,9 +9,15 @@ import { PollsService } from "../../services/polls.service";
 })
 export class PollsComponent implements OnInit {
 
+  polls: any;
+
   constructor(protected _polls: PollsService) { }
 
   ngOnInit() {
+    // Get all polls
+    this._polls.getAllPolls().subscribe(data => {
+      this.polls = data;
+    });
   }
 
 }
