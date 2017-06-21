@@ -9,6 +9,7 @@ const app = express();
 // const session = require('express-session');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const polls = require('./api/routes/polls.js');
 
