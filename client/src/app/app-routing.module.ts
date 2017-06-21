@@ -6,7 +6,8 @@ import { PollsComponent } from './pages/polls/polls.component';
 const routes: Routes = [
   {
     path: '',
-    children: []
+    redirectTo: '/polls',
+    pathMatch: 'full'
   },
   {
     path: 'polls',
