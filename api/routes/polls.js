@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/Poll.js');
+const Poll = require('../models/Poll.js');
 
-router.get('/api/polls', (req, res, next) => {
+router.get('', (req, res, next) => {
   //Get all polls
   Poll.find()
     .select({
