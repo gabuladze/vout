@@ -20,3 +20,5 @@ router.get('/api/polls', (req, res, next) => {
       }
     });
 });
+
+module.exports = router;
