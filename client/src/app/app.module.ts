@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PollsComponent } from './pages/polls/polls.component';
+import { PollDetailsComponent } from './pages/poll-details/poll-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    PollsComponent
+    PollsComponent,
+    PollDetailsComponent
   ],
   imports: [
     BrowserModule,
