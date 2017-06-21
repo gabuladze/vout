@@ -12,6 +12,7 @@ router.get('', (req, res, next) => {
     .sort({
       title: -1
     })
+    .lean()
     .exec(function (err, polls) {
       if (err) {
         return res.json({ success: false, message: 'Failed to retrieve Polls!' });
