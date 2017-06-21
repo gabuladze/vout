@@ -10,12 +10,17 @@ import { PollsService } from "../../services/polls.service";
 })
 export class PollDetailsComponent implements OnInit {
   id: String;
+  poll: any;
 
   constructor(private route: ActivatedRoute, private _polls: PollsService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
+      
+      this._polls.getPollById(this.id).subscribe(data => {
+        this.poll = data.poll;
+      });
     });
   }
 
