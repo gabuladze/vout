@@ -4,7 +4,7 @@
       <div *ngIf='polls'>
         <div class="list-group">
           <div *ngFor='let poll of polls'>
-            <a class="list-group-item" href="#"><strong>{{poll.title}}</strong></a>
+            <a class="list-group-item" routerLink="/polls/{{poll._id}}/view"><strong>{{poll.title}}</strong></a>
           </div>
         </div>
       </div>
