@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Poll = require('../models/Poll.js');
 
+/**
+ * Return all polls ordered by title in desc order
+ */
 router.get('', (req, res, next) => {
   //Get all polls
   Poll.find()
@@ -20,6 +23,26 @@ router.get('', (req, res, next) => {
         return res.json({ polls: polls });
       }
     });
+});
+
+/**
+ * Return a single poll by id
+ */
+router.get('/:id', (req, res, next) => {
+  Poll.find({ _id: req.params.id })
+    .select({
+      title: 1,
+      _creator: 1,
+      options: 1
+    })
+    .lean()
+    .exec(function (err, poll) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to retrieve Polls!' });
+      } else {
+        return res.json({ poll: poll });
+      }
+    })
 });
 
 module.exports = router;
