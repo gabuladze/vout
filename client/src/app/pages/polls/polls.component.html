@@ -1,3 +1,7 @@
-<p>
-  polls works!
-</p>
+<div *ngIf='polls'>
+  <div class="list-group">
+    <div *ngFor='let poll of polls'>
+      <a class="list-group-item" href="#"><strong>{{poll.title}}</strong></a>
+    <div>
+  </div>
+</div>
