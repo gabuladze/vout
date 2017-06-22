@@ -1,6 +1,0 @@
-{"web":{"client_id":"164895958582-a8v2625nm9o8qiegc6vk3v22c837cb0l.apps.googleusercontent.com",
-  "project_id":"vout-1374","auth_uri":"https://accounts.google.com/o/oauth2/auth",
-  "token_uri":"https://accounts.google.com/o/oauth2/token",
-  "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
-  "client_secret":"RP7lyK2VfB3E2XaKVeOKGmvR",
-  "redirect_uris":["https://vout.herokuapp.com/oauth/google/callback","http://localhost:3500/oauth/google/callback"],"javascript_origins":["http://localhost:3500","https://vout.herokuapp.com"]}}
