@@ -12,6 +12,9 @@ import { PollsService } from "../../services/polls.service";
 export class PollDetailsComponent implements OnInit {
   id: String;
   poll: any;
+  pieChartData: number[] = [];
+  pieChartLabels: string[] = [];
+  pieChartOptions: object = { responsive: true };
 
   constructor(private route: ActivatedRoute, private _polls: PollsService) { }
 
@@ -21,6 +24,13 @@ export class PollDetailsComponent implements OnInit {
 
       this._polls.getPollById(this.id).subscribe(data => {
         this.poll = data.poll;
+
+        // Construct poll data
+        data.poll.options.forEach(option => {
+          this.pieChartData.push(option.votes);
+          this.pieChartLabels.push(option.name);
+        });
+
       });
     });
   }
