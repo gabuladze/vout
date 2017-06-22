@@ -9,6 +9,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PollsComponent } from './pages/polls/polls.component';
 import { PollDetailsComponent } from './pages/poll-details/poll-details.component';
 
+import { ChartsModule } from "ng2-charts";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { PollDetailsComponent } from './pages/poll-details/poll-details.componen
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
