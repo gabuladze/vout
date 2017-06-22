@@ -29,12 +29,13 @@ router.get('', (req, res, next) => {
  * Return a single poll by id
  */
 router.get('/:id', (req, res, next) => {
-  Poll.find({ _id: req.params.id })
+  Poll.findOne({ _id: req.params.id })
     .select({
       title: 1,
       _creator: 1,
       options: 1
     })
+    .populate('_creator')
     .lean()
     .exec(function (err, poll) {
       if (err) {
