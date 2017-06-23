@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { PollsService } from "../../services/polls.service";
 
@@ -10,13 +10,18 @@ import { PollsService } from "../../services/polls.service";
   providers: [PollsService]
 })
 export class PollDetailsComponent implements OnInit {
-  id: String;
+  id: string;
   poll: any;
   pieChartData: number[] = [];
   pieChartLabels: string[] = [];
   pieChartOptions: object = { responsive: true };
+  option: string;
 
-  constructor(private route: ActivatedRoute, private _polls: PollsService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private _polls: PollsService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -32,6 +37,12 @@ export class PollDetailsComponent implements OnInit {
         });
 
       });
+    });
+  }
+
+  onVoteSubmit() {
+    this._polls.voteForPoll(this.poll._id, this.option).subscribe(data => {
+      this.router.navigate(['/polls/:id/view', this.id]);
     });
   }
 
