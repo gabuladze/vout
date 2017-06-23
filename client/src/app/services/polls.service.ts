@@ -24,11 +24,24 @@ export class PollsService {
    * Retrieve a single poll by id
    * @param id {String}
    */
-  getPollById(id: String) {
+  getPollById(id: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     return this.http.get('http://localhost:3500/api/polls/' + id)
+      .map(res => res.json());
+  }
+
+  /**
+   * Vote for a poll
+   * @param pollId {String}
+   * @param optionId {String}
+   */
+  voteForPoll(pollId: string, optionId: string) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post('http://localhost:3500/api/polls/' + pollId + '/vote', optionId, { headers: headers })
       .map(res => res.json());
   }
 }
