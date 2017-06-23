@@ -8,12 +8,12 @@
 
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="forms">
-        <form>
+        <form (submit)="onVoteSubmit()">
           <div class="form-group">
             <label for="option">I'd like to vote for:</label>
-            <select class="form-control" name="option">
-            <option *ngFor="let option of poll.options" value="{{option._id}}">{{option.name}}</option>
-          </select>
+            <select class="form-control" name="option" [(ngModel)]="option" >
+              <option *ngFor="let option of poll.options" value="{{option._id}}">{{option.name}}</option>
+            </select>
           </div>
           <button class="btn btn-default" type="submit">Submit</button>
         </form>
@@ -31,13 +31,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [options]="pieChartOptions"
-          width="645"
-          height="322"
-          chartType="pie"></canvas>
+        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [options]="pieChartOptions" width="645" height="322" chartType="pie"></canvas>
       </div>
     </div>
   </div>
