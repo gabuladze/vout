@@ -45,15 +45,19 @@ export class PollDetailsComponent implements OnInit {
   }
 
   onVoteSubmit() {
-    this._polls.voteForPoll(this.poll._id, this.option).subscribe(data => {
-      if (data.success) {
-        this._flashMessage.show(data.message, { cssClass: 'alert-success', timeout: 5000 });
-        this.router.navigate(['/polls']);
-      } else {
-        this._flashMessage.show(data.message, { cssClass: 'alert-danger', timeout: 5000 });
-        this.router.navigate(['/polls/:id/view', this.poll._id]);
-      }
-    });
+    if (this._validate.validateVote({ option: this.option })) {
+      this._polls.voteForPoll(this.poll._id, this.option).subscribe(data => {
+        if (data.success) {
+          this._flashMessage.show(data.message, { cssClass: 'alert-success', timeout: 5000 });
+          this.router.navigate(['/polls']);
+        } else {
+          this._flashMessage.show(data.message, { cssClass: 'alert-danger', timeout: 5000 });
+          this.router.navigate(['/polls/:id/view', this.poll._id]);
+        }
+      });
+    } else {
+      this._flashMessage.show('Please, select one of the options!', { cssClass: 'alert-danger', timeout: 5000 });
+    }
   }
 
 }
