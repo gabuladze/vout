@@ -46,4 +46,23 @@ router.get('/:id', (req, res, next) => {
     })
 });
 
+
+router.post('/:id/vote', (req, res, next) => {
+  Poll.update({
+    _id: req.body.poll,
+    "options._id": req.body.option
+  },
+    {
+      $inc: {
+        "options.$.votes": 1
+      }
+    }, function (err, result) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to submit the vote!' });
+      } else {
+        return res.json({ success: true, message: 'Your vote has been submitted!' });
+      }
+    });
+});
+
 module.exports = router;
