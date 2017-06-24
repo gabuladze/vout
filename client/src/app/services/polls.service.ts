@@ -41,7 +41,12 @@ export class PollsService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post('http://localhost:3500/api/polls/' + pollId + '/vote', optionId, { headers: headers })
+    return this.http.post('http://localhost:3500/api/polls/vote',
+      {
+        poll: pollId,
+        option: optionId
+      },
+      { headers: headers })
       .map(res => res.json());
   }
 }
