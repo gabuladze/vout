@@ -10,6 +10,7 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const polls = require('./api/routes/polls.js');
 
@@ -24,6 +25,8 @@ mongoose.connect(dbUrl);
 // }));
 
 //app.use(flash());
+
+app.use(bodyParser.json());
 
 app.use(cors());
 
