@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
+import { FlashMessagesService } from "angular2-flash-messages";
 import { PollsService } from "../../services/polls.service";
 
 @Component({
@@ -19,6 +20,7 @@ export class PollDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private _flashMessage: FlashMessagesService,
     private _polls: PollsService,
     private router: Router
     ) { }
@@ -42,7 +44,8 @@ export class PollDetailsComponent implements OnInit {
 
   onVoteSubmit() {
     this._polls.voteForPoll(this.poll._id, this.option).subscribe(data => {
-      this.router.navigate(['/polls/:id/view', this.id]);
+      this._flashMessage.show('Your vote has been submitted!', {cssClass: 'alert-success', timeout: 5000});
+      this.router.navigate(['/polls']);
     });
   }
 
