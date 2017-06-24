@@ -23,7 +23,7 @@ export class PollDetailsComponent implements OnInit {
     private _flashMessage: FlashMessagesService,
     private _polls: PollsService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -44,8 +44,13 @@ export class PollDetailsComponent implements OnInit {
 
   onVoteSubmit() {
     this._polls.voteForPoll(this.poll._id, this.option).subscribe(data => {
-      this._flashMessage.show('Your vote has been submitted!', {cssClass: 'alert-success', timeout: 5000});
-      this.router.navigate(['/polls']);
+      if (data.success) {
+        this._flashMessage.show(data.message, { cssClass: 'alert-success', timeout: 5000 });
+        this.router.navigate(['/polls']);
+      } else {
+        this._flashMessage.show(data.message, { cssClass: 'alert-danger', timeout: 5000 });
+        this.router.navigate(['/polls/:id/view', this.poll._id]);
+      }
     });
   }
 
