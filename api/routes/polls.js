@@ -47,7 +47,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 
-router.post('/:id/vote', (req, res, next) => {
+router.post('/vote', (req, res, next) => {
   Poll.update({
     _id: req.body.poll,
     "options._id": req.body.option
