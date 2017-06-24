@@ -26,9 +26,10 @@ mongoose.connect(dbUrl);
 
 //app.use(flash());
 
-app.use(bodyParser.json());
-
 app.use(cors());
+
+//app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // app.use(passport.initialize());
 // app.use(passport.session());
@@ -43,13 +44,13 @@ app.use(cors());
 app.use('/api/polls', polls);
 
 // Redirect all requests to index html
-app.get('*', (req,res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'));
 })
 
 
 const port = process.env.PORT || 3500;
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Magic on port " + port);
 });
