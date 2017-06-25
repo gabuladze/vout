@@ -1,6 +1,7 @@
 .google-login {
   background-color: #E53935 !important;
   color: #FFFFFF !important;
+  margin-right: 10px;
 }
 .google-login:hover {background-color: #ee3b37 !important;}
 .img-circle {
