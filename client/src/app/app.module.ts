@@ -12,7 +12,6 @@ import { PollDetailsComponent } from './pages/poll-details/poll-details.componen
 
 import { ChartsModule } from "ng2-charts";
 import { LoginComponent } from './components/login/login.component';
-import { LoginDirective } from './directives/login.directive';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { LoginDirective } from './directives/login.directive';
     NavbarComponent,
     PollsComponent,
     PollDetailsComponent,
-    LoginComponent,
-    LoginDirective
+    LoginComponent
   ],
   imports: [
     BrowserModule,
