@@ -11,15 +11,13 @@ import { PollsComponent } from './pages/polls/polls.component';
 import { PollDetailsComponent } from './pages/poll-details/poll-details.component';
 
 import { ChartsModule } from "ng2-charts";
-import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PollsComponent,
-    PollDetailsComponent,
-    LoginComponent
+    PollDetailsComponent
   ],
   imports: [
     BrowserModule,
