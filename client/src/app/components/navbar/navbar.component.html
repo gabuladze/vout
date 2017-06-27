@@ -16,9 +16,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="">Home</a></li>
-        <li *ngIf="!_auth.loggedIn()"><a class="google-login" href="/auth/google"><i class="fa fa-google-plus"></i> Log in</a></li>
-        <li class="dropdown" *ngIf="_auth.loggedIn() && this.user">
-          <a href="#" class="google-login dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>{{user.profile.name}}</span> <img class="img-circle" src="{{user.profile.image}}"> <span class="caret"></span></a>
+        <li *ngIf="!_login.loggedIn()"><a class="google-login" (click)="onLoginClick()"><i class="fa fa-google-plus"></i> Log in</a></li>
+        <li class="dropdown" *ngIf="_login.loggedIn() && this.user">
+          <a href="#" class="google-login dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>{{user.name}}</span> <img class="img-circle" src="{{user.image}}"> <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">My polls</a></li>
             <li><a href="#">App Poll</a></li>

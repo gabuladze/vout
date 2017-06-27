@@ -22,6 +22,7 @@
     "@angular/router": "^4.0.0",
     "angular2-flash-messages": "^1.0.8",
     "angular2-google-login": "^1.0.9",
+    "angular2-social-login": "^3.0.1",
     "chart.js": "^2.6.0",
     "core-js": "^2.4.1",
     "gapi": "0.0.3",

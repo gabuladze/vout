@@ -1,17 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../../services/auth.service";
+import { LoginService } from "../../services/login.service";
+import { FlashMessagesService } from "angular2-flash-messages";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  providers: [AuthService]
+  providers: [LoginService]
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private _auth: AuthService) { }
+  user: any;
 
-  ngOnInit() {
+  constructor(
+    private _login: LoginService,
+    private _flashMessage: FlashMessagesService
+  ) {
+
   }
 
+  ngOnInit() {
+    this.user = this._login.getProfile();
+  }
+
+  onLoginClick() {
+    this._login.gauth((user) => {
+      this.user = user;
+    });
+  }
+
+  onLogoutClick() {
+    this._login.logout(() => {
+      this._flashMessage.show('Bye!', { cssClass: 'alert-info', timeout: 5000 });
+    });
+  }
 }

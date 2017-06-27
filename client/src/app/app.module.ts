@@ -10,7 +10,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PollsComponent } from './pages/polls/polls.component';
 import { PollDetailsComponent } from './pages/poll-details/poll-details.component';
 
+import { Angular2SocialLoginModule } from "angular2-social-login";
 import { ChartsModule } from "ng2-charts";
+
+let providers = {
+  "google": {
+    "clientId": "22850615934-r0lrae7sd5ik8i4vpf43gp9u6hkdm48l.apps.googleusercontent.com"
+  }
+};
 
 @NgModule({
   declarations: [
@@ -25,9 +32,12 @@ import { ChartsModule } from "ng2-charts";
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    Angular2SocialLoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+Angular2SocialLoginModule.loadProvidersScripts(providers);
