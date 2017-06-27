@@ -1,15 +1,10 @@
-import { Injectable, OnInit, NgZone, AfterViewInit } from '@angular/core';
+import { Injectable, OnInit, AfterViewInit } from '@angular/core';
 
 declare var gapi: any;
 
 @Injectable()
 export class AuthService implements OnInit, AfterViewInit {
-  token: string;
-  imageURL: string;
-  name: string;
-  email: string;
-
-  constructor(private zone: NgZone) { }
+  constructor() { }
 
   ngOnInit() {
     // AppGlobals.GOOGLE_CLIENT_ID = '164895958582-a8v2625nm9o8qiegc6vk3v22c837cb0l.apps.googleusercontent.com';
@@ -19,14 +14,14 @@ export class AuthService implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     //AppGlobals.GOOGLE_CLIENT_ID = '164895958582-a8v2625nm9o8qiegc6vk3v22c837cb0l.apps.googleusercontent.com';
-    this.getData();
-    setTimeout(() => { this.googleAuthenticate() }, 2000);
+    // this.getData();
+    // setTimeout(() => { this.gauth() }, 50);
   }
 
   /**
    * Authenticate the user in google
    */
-  googleAuthenticate() {
+  gauth(callback) {
     let auth2: any;
     let error: any;
 
@@ -38,19 +33,24 @@ export class AuthService implements OnInit, AfterViewInit {
       });
       //Login button reference
       let loginButton: any = document.getElementById('google-login-button');
-      
+
       auth2.attachClickHandler(loginButton, {},
         function (userDetails) {
           //Getting profile object
           let profile = userDetails.getBasicProfile();
 
-          // Save data to localstorage.
-          localStorage.setItem('token', userDetails.getAuthResponse().id_token);
-          localStorage.setItem('image', profile.getImageUrl());
-          localStorage.setItem('name', profile.getName());
-          localStorage.setItem('email', profile.getEmail());
+          let result = {
+            token: userDetails.getAuthResponse().id_token,
+            profile: {
+              image: profile.getImageUrl(),
+              name: profile.getName(),
+              email: profile.getEmail()
+            }
+          };
+
+          return callback(null, result);
         }, function (error) {
-          this.error = (JSON.stringify(error, undefined, 2));
+          return callback(JSON.stringify(error))
         });
     });
   }
@@ -58,11 +58,21 @@ export class AuthService implements OnInit, AfterViewInit {
   /**
    * Get user data from local storage
    */
-  getData() {
-    this.token = localStorage.getItem('token');
-    this.imageURL = localStorage.getItem('image');
-    this.name = localStorage.getItem('name');
-    this.email = localStorage.getItem('email');
+  getProfile() {
+    return {
+      token: localStorage.getItem('token'),
+      profile: JSON.parse(localStorage.getItem('profile'))
+    };
+  }
+
+  /**
+   * Save profile to local storage
+   * @param token {string}
+   * @param profile {object}
+   */
+  saveProfile(token: string, profile: object) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('profile', JSON.stringify(profile));
   }
 
   /**
@@ -88,8 +98,6 @@ export class AuthService implements OnInit, AfterViewInit {
    */
   clearLocalStorage() {
     localStorage.removeItem('token');
-    localStorage.removeItem('image');
-    localStorage.removeItem('name');
-    localStorage.removeItem('email');
+    localStorage.removeItem('profile');
   }
 }
