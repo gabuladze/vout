@@ -1,0 +1,14 @@
+.img-circle {
+  border-radius: 50% !important;
+  width: 50px !important;
+  height: 50px !important;
+}
+a.dropdown-toggle {padding-top: 0 !important; padding-bottom: 0 !important;}
+a.dropdown-toggle img {
+  margin-left: 10px !important;
+}
+.google-login {
+  background-color: #E53935 !important;
+  color: #FFFFFF !important;
+}
+.google-login:hover {background-color: #ee3b37 !important;}
