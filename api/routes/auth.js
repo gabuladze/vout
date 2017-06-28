@@ -11,7 +11,8 @@ router.post('', (req, res, next) => {
         user = new User({
           name: req.body.name,
           googleId: req.body.uid,
-          photoUrl: req.body.image
+          photoUrl: req.body.image,
+          token: req.body.token
         });
 
         user.save(function (err) {
@@ -33,7 +34,7 @@ router.post('', (req, res, next) => {
             return res.json({ success: true });
           }
         });
-        
+
       }
     }
   });
