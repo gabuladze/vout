@@ -7,7 +7,8 @@ var Poll = require('./Poll.js');
 var userSchema = new Schema({
   name: String,
   googleId: String,
-  photoUrl: String
+  photoUrl: String,
+  token: String
 });
 
 var User = mongoose.model('User', userSchema);
