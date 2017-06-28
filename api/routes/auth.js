@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User.js');
 
-router.post('', (req, res, next) => {
+router.post('login', (req, res, next) => {
   User.findOne({ googleId: req.body.uid }, function (err, user) {
     if (err) {
       return res.json({ success: false, message: JSON.stringify(err) });
@@ -39,5 +39,18 @@ router.post('', (req, res, next) => {
     }
   });
 });
+
+router.post('logout', (req, res, next) => {
+  User.update(
+    { email: req.body.email },
+    { $unset: { token: "" } },
+    function (err, result) {
+      if (err) {
+        return res.json({ success: false, message: 'Operation Failed!' });
+      } else {
+        return res.json({ success: true });
+      }
+    });
+})
 
 module.exports = router;
