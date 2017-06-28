@@ -24,8 +24,12 @@ export class NavbarComponent implements OnInit {
   }
 
   onLoginClick() {
-    this._login.gauth((user) => {
-      this.user = user;
+    this._login.gauth((err, user) => {
+      if (err) {
+        this._flashMessage.show('Failed to login!', { cssClass: 'alert-danger', timeout: 5000 });
+      } else {
+        this.user = user;
+      }
     });
   }
 

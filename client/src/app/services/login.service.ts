@@ -1,13 +1,20 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "angular2-social-login";
+import { Http, Headers } from "@angular/http";
+
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class LoginService implements OnInit {
   user: any;
   auth2: any;
 
-  constructor(private router: Router, private _auth: AuthService) {
+  constructor(
+    private router: Router,
+    private _auth: AuthService,
+    private http: Http
+  ) {
     this.user = this.getProfile();
   }
 
@@ -24,10 +31,21 @@ export class LoginService implements OnInit {
         name: data['name']
       };
 
-      // Save profile and token to local storage
-      localStorage.setItem('token', data['token']);
-      localStorage.setItem('profile', JSON.stringify(profile));
-      callback(profile);
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      this.http.post('http://localhost:3500/api/auth', data, { headers: headers })
+        .map(res => res.json())
+        .subscribe(data => {
+          if (data.success) {
+            // Save profile and token to local storage
+            localStorage.setItem('token', data['token']);
+            localStorage.setItem('profile', JSON.stringify(profile));
+            return callback(null, profile);
+          } else {
+            return callback(data.message);
+          }
+        });
     });
   }
 
