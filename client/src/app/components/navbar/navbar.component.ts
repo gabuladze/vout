@@ -34,8 +34,12 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogoutClick() {
-    this._login.logout(() => {
-      this._flashMessage.show('Bye!', { cssClass: 'alert-info', timeout: 5000 });
+    this._login.logout((err) => {
+      if (err) {
+        this._flashMessage.show(err.message, { cssClass: 'alert-danger', timeout: 5000 });
+      } else {
+        this._flashMessage.show('Bye!', { cssClass: 'alert-info', timeout: 5000 });
+      }
     });
   }
 }

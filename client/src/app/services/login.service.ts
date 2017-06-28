@@ -34,7 +34,7 @@ export class LoginService implements OnInit {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.post('http://localhost:3500/api/auth', data, { headers: headers })
+      this.http.post('http://localhost:3500/api/auth/login', data, { headers: headers })
         .map(res => res.json())
         .subscribe(data => {
           if (data.success) {
@@ -83,8 +83,20 @@ export class LoginService implements OnInit {
 
     this._auth.logout().subscribe((data) => {
       if (data) {
-        this.clearLocalStorage();
-        callback();
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        let email = this.getProfile().email;
+        this.http.post('http://localhost:3500/api/auth/logout', email, {headers: headers})
+          .map(res => res.json())
+          .subscribe(data => {
+            if (data.success) {
+              this.clearLocalStorage();
+              callback(null);
+            } else {
+              callback(data.message);
+            }
+          })
       }
     });
   }
