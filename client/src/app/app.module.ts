@@ -10,6 +10,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PollsComponent } from './pages/polls/polls.component';
 import { PollDetailsComponent } from './pages/poll-details/poll-details.component';
 
+import { LoginService } from "./services/login.service";
+
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { ChartsModule } from "ng2-charts";
 import { CreatePollComponent } from './pages/create-poll/create-poll.component';
@@ -39,7 +41,7 @@ let providers = {
     ChartsModule,
     Angular2SocialLoginModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
