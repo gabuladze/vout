@@ -82,4 +82,18 @@ export class PollsService {
       { headers: headers })
       .map(res => res.json());
   }
+
+  /**
+   * Delete poll
+   * @param id {string}
+   */
+  deletePoll(id: string) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post('http://localhost:3500/api/polls/destroy',
+      { id: id },
+      { headers: headers })
+      .map(res => res.json());
+  }
 }
