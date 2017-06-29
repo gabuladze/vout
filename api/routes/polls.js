@@ -35,7 +35,6 @@ router.get('/:id', (req, res, next) => {
       _creator: 1,
       options: 1
     })
-    .populate('_creator')
     .lean()
     .exec(function (err, poll) {
       if (err) {
@@ -82,6 +81,16 @@ router.post('/create', (req, res, next) => {
       return res.json({ success: false, message: 'Failed to add poll!' });
     } else {
       return res.json({ success: true });
+    }
+  })
+});
+
+router.post('/destroy', (req, res, next) => {
+  Poll.remove({ _id: req.body.id }, function (err) {
+    if (err) {
+      return res.json({ success: false, message: JSON.stringify(err) });
+    } else {
+      return res.json({ success: true, message: 'The poll has been deleted!' });
     }
   })
 });
