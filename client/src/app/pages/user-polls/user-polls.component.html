@@ -1,13 +1,16 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12">
-      <div *ngIf='polls'>
+      <div *ngIf='polls; else elseBlock'>
         <div class="list-group">
           <div *ngFor='let poll of polls'>
             <a class="list-group-item" routerLink="/polls/{{poll._id}}/view"><strong>{{poll.title}}</strong></a>
           </div>
         </div>
       </div>
+      <ng-template #elseBlock>
+        <div class="alert alert-info" role="alert">You haven't created any polls yet!</div>
+      </ng-template>
     </div>
   </div>
 </div>
