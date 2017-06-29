@@ -74,7 +74,7 @@ export class PollsService {
    * Fetch polls that belong to user with id, userId
    * @param userId {string}
    */
-  userPolls(userId: string) {
+  getUserPolls(userId: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
