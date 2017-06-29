@@ -63,7 +63,7 @@ export class PollsService {
     return this.http.post('http://localhost:3500/api/polls/create',
       {
         title: title,
-        option: options,
+        options: options,
         userId: userId
       },
       { headers: headers })
