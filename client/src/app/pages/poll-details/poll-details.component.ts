@@ -4,12 +4,13 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FlashMessagesService } from "angular2-flash-messages";
 import { PollsService } from "../../services/polls.service";
 import { ValidateService } from "../../services/validate.service";
+import { LoginService } from "../../services/login.service";
 
 @Component({
   selector: 'app-poll-details',
   templateUrl: './poll-details.component.html',
   styleUrls: ['./poll-details.component.css'],
-  providers: [PollsService, ValidateService]
+  providers: [PollsService, ValidateService, LoginService]
 })
 export class PollDetailsComponent implements OnInit {
   id: string;
@@ -25,6 +26,7 @@ export class PollDetailsComponent implements OnInit {
     private _polls: PollsService,
     private _validate: ValidateService,
     private router: Router,
+    private _login: LoginService
   ) { }
 
   ngOnInit() {
