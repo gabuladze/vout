@@ -36,14 +36,14 @@ export class LoginService implements OnInit {
 
       this.http.post('http://localhost:3500/api/auth/login', data, { headers: headers })
         .map(res => res.json())
-        .subscribe(data => {
-          if (data.success) {
+        .subscribe(r => {
+          if (r.success) {
             // Save profile and token to local storage
             localStorage.setItem('token', data['token']);
             localStorage.setItem('profile', JSON.stringify(profile));
             return callback(null, profile);
           } else {
-            return callback(data.message);
+            return callback(r.message);
           }
         });
     });
