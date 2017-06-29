@@ -65,4 +65,25 @@ router.post('/vote', (req, res, next) => {
     });
 });
 
+router.post('/create', (req, res, next) => {
+  let poll = new Poll({
+    title: req.body.title,
+    options: [],
+    _creator: req.userId
+  });
+
+  // add poll options
+  req.body.options.forEach(function (option) {
+    poll.options.addToSet({ name: option });
+  });
+
+  poll.save(function (err) {
+    if (err) {
+      return res.json({ success: false, message: 'Failed to add poll!' });
+    } else {
+      return res.json({ success: true });
+    }
+  })
+});
+
 module.exports = router;
