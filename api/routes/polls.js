@@ -69,7 +69,7 @@ router.post('/create', (req, res, next) => {
   let poll = new Poll({
     title: req.body.title,
     options: [],
-    _creator: req.userId
+    _creator: req.body.userId
   });
 
   // add poll options
