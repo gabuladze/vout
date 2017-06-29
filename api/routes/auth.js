@@ -19,7 +19,7 @@ router.post('/login', (req, res, next) => {
           if (err) {
             return res.json({ success: false, message: JSON.stringify(err) });
           } else {
-            return res.json({ success: true });
+            return res.json({ success: true, id: user._id });
           }
         });
 
@@ -31,7 +31,7 @@ router.post('/login', (req, res, next) => {
           if (err) {
             return res.json({ success: false, message: JSON.stringify(err) });
           } else {
-            return res.json({ success: true });
+            return res.json({ success: true, id: user._id });
           }
         });
 
