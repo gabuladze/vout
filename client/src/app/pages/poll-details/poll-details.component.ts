@@ -19,6 +19,7 @@ export class PollDetailsComponent implements OnInit {
   pieChartLabels: string[] = [];
   pieChartOptions: object = { responsive: true };
   option: string;
+  author: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,13 +36,15 @@ export class PollDetailsComponent implements OnInit {
 
       this._polls.getPollById(this.id).subscribe(data => {
         this.poll = data.poll;
-
+        
         // Construct poll data
         data.poll.options.forEach(option => {
           this.pieChartData.push(option.votes);
           this.pieChartLabels.push(option.name);
         });
 
+        let userId = this._login.getProfile()['id'];
+        this.author = data.poll.creator == userId ? true : false;
       });
     });
   }
