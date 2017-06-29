@@ -87,7 +87,7 @@ router.post('/create', (req, res, next) => {
 });
 
 router.get('/user/:id', (req, res, next) => {
-  Poll.find({ _creator: req.params.userId })
+  Poll.find({ _creator: req.params.id })
     .select({ title: 1, _id: 1 })
     .lean()
     .exec(function (err, polls) {
