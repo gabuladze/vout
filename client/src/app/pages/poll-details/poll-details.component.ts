@@ -44,7 +44,7 @@ export class PollDetailsComponent implements OnInit {
         });
 
         let userId = this._login.getProfile()['id'];
-        this.author = data.poll.creator == userId ? true : false;
+        this.author = data.poll._creator == userId ? true : false;
       });
     });
   }
@@ -65,4 +65,14 @@ export class PollDetailsComponent implements OnInit {
     }
   }
 
+  onDeletePollClick() {
+    this._polls.deletePoll(this.poll._id).subscribe(data => {
+      if (data.success) {
+        this._flashMessage.show(data.message, { cssClass: 'alert-success', timeout: 5000 });
+        this.router.navigate(['/polls']);
+      } else {
+        this._flashMessage.show(data.message, { cssClass: 'alert-danger', timeout: 5000 });
+      }
+    });
+  }
 }
