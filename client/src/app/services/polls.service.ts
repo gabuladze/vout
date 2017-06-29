@@ -54,15 +54,17 @@ export class PollsService {
    * Create poll
    * @param title {string}
    * @param options {array}
+   * @param userId {string}
    */
-  createPoll(title, options) {
+  createPoll(title, options, userId) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     return this.http.post('http://localhost:3500/api/polls/create',
       {
         title: title,
-        option: options
+        option: options,
+        userId: userId
       },
       { headers: headers })
       .map(res => res.json());
