@@ -69,4 +69,17 @@ export class PollsService {
       { headers: headers })
       .map(res => res.json());
   }
+
+  /**
+   * Fetch polls that belong to user with id, userId
+   * @param userId {string}
+   */
+  userPolls(userId: string) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get('http://localhost:3500/api/polls/user/' + userId,
+      { headers: headers })
+      .map(res => res.json());
+  }
 }
