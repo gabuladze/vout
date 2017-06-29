@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { PollsService } from "../../services/polls.service";
 
 @Component({
   selector: 'app-create-poll',
   templateUrl: './create-poll.component.html',
-  styleUrls: ['./create-poll.component.css']
+  styleUrls: ['./create-poll.component.css'],
+  providers: [PollsService]
 })
 export class CreatePollComponent implements OnInit {
   title: string;
   options: any;
 
-  constructor() { }
+  constructor(private _polls: PollsService) { }
 
   ngOnInit() {
     this.options = [];
@@ -29,6 +31,9 @@ export class CreatePollComponent implements OnInit {
    */
   deleteFromOptions(option) {
     this.options = this.options.filter(o => o != option);
+  }
+
+  onSubmit() {
   }
 
 }
