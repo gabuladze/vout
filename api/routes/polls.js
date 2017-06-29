@@ -86,4 +86,17 @@ router.post('/create', (req, res, next) => {
   })
 });
 
+router.get('/users/:id', (req, res, next) => {
+  Poll.find({ _creator: req.params.userId })
+    .select({ title: 1, _id: 1 })
+    .lean()
+    .exec(function (err, polls) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to retrieve polls!' });
+      } else {
+        return res.json({ success: true, polls: polls });
+      }
+    })
+})
+
 module.exports = router;
