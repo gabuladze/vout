@@ -29,6 +29,7 @@
         <a class="btn btn-sm btn-default btn-twitter" href="https://twitter.com/intent/tweet?url=https://vout.herokuapp.com/polls/view/5797b84d7646e61100358125"
           target="_blank"><i class="fa fa-twitter"></i></a>-->
         </div>
+        <button class="btn btn-danger" *ngIf="author" (click)="onDeletePollClick()">Delete poll</button>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [options]="pieChartOptions" width="645" height="322" chartType="pie"></canvas>
