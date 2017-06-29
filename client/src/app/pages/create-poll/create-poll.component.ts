@@ -6,10 +6,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-poll.component.css']
 })
 export class CreatePollComponent implements OnInit {
+  title: string;
+  options: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.options = [];
+  }
+
+  /**
+   * Push option to options array
+   * @param option {string}
+   */
+  addOption(option) {
+    this.options.push(option);
+  }
+
+  /**
+   * Delete option from options array
+   * @param option {string}
+   */
+  deleteFromOptions(option) {
+    this.options = this.options.filter(o => o != option);
   }
 
 }
