@@ -21,7 +21,7 @@
           <a href="#" class="google-login dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>{{user.name}}</span> <img class="img-circle" src="{{user.image}}"> <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">My polls</a></li>
-            <li><a href="#">App Poll</a></li>
+            <li><a routerLink="/polls/create">Add Poll</a></li>
             <li role="separator" class="divider"></li>
             <li><button class="btn btn-danger btn-block" (click)="onLogoutClick()">Log out</button></li>
           </ul>
