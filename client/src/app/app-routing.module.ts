@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreatePollComponent } from "./pages/create-poll/create-poll.component";
 import { PollDetailsComponent } from "./pages/poll-details/poll-details.component";
 import { PollsComponent } from './pages/polls/polls.component';
+import { UserPollsComponent } from "./pages/user-polls/user-polls.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'polls/create',
     component: CreatePollComponent
+  },
+  {
+    path: 'polls/users/:id',
+    component: UserPollsComponent
   }
 ];
 
