@@ -13,6 +13,7 @@ import { PollDetailsComponent } from './pages/poll-details/poll-details.componen
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { ChartsModule } from "ng2-charts";
 import { CreatePollComponent } from './pages/create-poll/create-poll.component';
+import { UserPollsComponent } from './pages/user-polls/user-polls.component';
 
 let providers = {
   "google": {
@@ -26,7 +27,8 @@ let providers = {
     NavbarComponent,
     PollsComponent,
     PollDetailsComponent,
-    CreatePollComponent
+    CreatePollComponent,
+    UserPollsComponent
   ],
   imports: [
     BrowserModule,
