@@ -25,12 +25,6 @@ export class LoginService implements OnInit {
    */
   gauth(callback) {
     this._auth.login('google').subscribe((data) => {
-      let profile = {
-        email: data['email'],
-        image: data['image'],
-        name: data['name']
-      };
-
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
@@ -38,6 +32,12 @@ export class LoginService implements OnInit {
         .map(res => res.json())
         .subscribe(r => {
           if (r.success) {
+            let profile = {
+              email: data['email'],
+              image: data['image'],
+              name: data['name'],
+              id: r.id
+            };
             // Save profile and token to local storage
             localStorage.setItem('token', data['token']);
             localStorage.setItem('profile', JSON.stringify(profile));
@@ -87,7 +87,7 @@ export class LoginService implements OnInit {
         headers.append('Content-Type', 'application/json');
 
         let email = this.getProfile().email;
-        this.http.post('http://localhost:3500/api/auth/logout', email, {headers: headers})
+        this.http.post('http://localhost:3500/api/auth/logout', email, { headers: headers })
           .map(res => res.json())
           .subscribe(data => {
             if (data.success) {
