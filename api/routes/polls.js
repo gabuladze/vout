@@ -67,6 +67,10 @@ router.post('/vote', (req, res, next) => {
     });
 });
 
+/**
+ * Vote for a single custom option in a single poll
+ * The request should have the option (string) & the id of poll
+ */
 router.post('/vote/custom', (req, res, next) => {
   Poll.findById(req.body.poll, 'options')
     .exec(function (err, poll) {
@@ -91,7 +95,7 @@ router.post('/vote/custom', (req, res, next) => {
 
 /**
  * Create a single poll
- * The request should receive title, array of options (strings), author's
+ * The request should include title, array of options (strings), author's
  * user id
  */
 router.post('/create', (req, res, next) => {
@@ -117,7 +121,7 @@ router.post('/create', (req, res, next) => {
 
 /**
  * Delete a single poll
- * The request should receive an id of poll to delete
+ * The request should include an id of poll to delete
  */
 router.post('/destroy', (req, res, next) => {
   Poll.remove({ _id: req.body.id }, function (err) {
