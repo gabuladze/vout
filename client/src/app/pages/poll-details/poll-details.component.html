@@ -9,11 +9,18 @@
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="forms">
         <form (submit)="onVoteSubmit()">
-          <div class="form-group">
-            <label for="option">I'd like to vote for:</label>
+          <div class="form-group" *ngIf="!customOption">
+            <label for="option">Please choose one of the options:</label>
             <select class="form-control" name="option" [(ngModel)]="option" >
               <option *ngFor="let option of poll.options" value="{{option._id}}">{{option.name}}</option>
             </select>
+          </div>
+          <div class="form-group">
+            <label>Or add a <button type="button" class="btn btn-default btn-xs" (click)="toggleCustomOption()">new</button> one <button type="button" class="btn-xs btn btn-danger" *ngIf="customOption" (click)="toggleCustomOption()">X</button></label>
+          </div>
+          <div class="form-group" *ngIf="customOption">
+            <label>Name:</label>
+            <input type="text" class="form-control" name="option">
           </div>
           <button class="btn btn-default" type="submit">Submit</button>
         </form>

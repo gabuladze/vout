@@ -20,6 +20,7 @@ export class PollDetailsComponent implements OnInit {
   pieChartOptions: object = { responsive: true };
   option: string;
   author: boolean;
+  customOption: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -74,5 +75,10 @@ export class PollDetailsComponent implements OnInit {
         this._flashMessage.show(data.message, { cssClass: 'alert-danger', timeout: 5000 });
       }
     });
+  }
+
+  toggleCustomOption() {
+    this.customOption = !this.customOption;
+    return false;
   }
 }
