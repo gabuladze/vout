@@ -51,6 +51,24 @@ export class PollsService {
   }
 
   /**
+   * Vote for a poll with a custom option
+   * @param pollId {string}
+   * @param option {string}
+   */
+  voteForPollCustom(pollId: string, option: string) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post('http://localhost:3500/api/polls/vote/custom',
+      {
+        poll: pollId,
+        option: option
+      },
+      { headers: headers })
+      .map(res => res.json());
+  }
+
+  /**
    * Create poll
    * @param title {string}
    * @param options {array}
