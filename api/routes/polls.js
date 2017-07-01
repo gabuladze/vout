@@ -45,7 +45,10 @@ router.get('/:id', (req, res, next) => {
     })
 });
 
-
+/**
+ * Vote for a single option in single poll
+ * poll & corresponding option are found by ids
+ */
 router.post('/vote', (req, res, next) => {
   Poll.update({
     _id: req.body.poll,
@@ -64,6 +67,33 @@ router.post('/vote', (req, res, next) => {
     });
 });
 
+router.post('/vote/custom', (req, res, next) => {
+  Poll.findById(req.body.poll, 'options')
+    .exec(function (err, poll) {
+      if (err) throw err;
+
+      // Add option with 1 vote
+      poll.options.push({
+        name: req.body.option,
+        votes: 1
+      });
+
+      // save the poll
+      poll.save(function (err) {
+        if (err) {
+          return res.json({ success: false, message: 'Failed to submit the vote!' });
+        } else {
+          return res.json({ success: true, message: 'Your vote has been submitted!' });
+        }
+      })
+    })
+});
+
+/**
+ * Create a single poll
+ * The request should receive title, array of options (strings), author's
+ * user id
+ */
 router.post('/create', (req, res, next) => {
   let poll = new Poll({
     title: req.body.title,
@@ -85,6 +115,10 @@ router.post('/create', (req, res, next) => {
   })
 });
 
+/**
+ * Delete a single poll
+ * The request should receive an id of poll to delete
+ */
 router.post('/destroy', (req, res, next) => {
   Poll.remove({ _id: req.body.id }, function (err) {
     if (err) {
@@ -95,6 +129,9 @@ router.post('/destroy', (req, res, next) => {
   })
 });
 
+/**
+ * Fetch all polls that belong to a user with certain id
+ */
 router.get('/user/:id', (req, res, next) => {
   Poll.find({ _creator: req.params.id })
     .select({ title: 1, _id: 1 })
