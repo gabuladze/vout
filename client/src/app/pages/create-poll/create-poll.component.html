@@ -17,9 +17,9 @@
             </div>
             <div class="col-lg-6">
               <div class="input-group">
-                <input type="text" class="form-control" #option name="option">
+                <input type="text" class="form-control" [(ngModel)]='option' name="option">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button" (click)="addOption(option.value)">Add!</button>
+                  <button class="btn btn-default" type="button" (click)="addOption()">Add!</button>
                 </span>
               </div>
             </div>

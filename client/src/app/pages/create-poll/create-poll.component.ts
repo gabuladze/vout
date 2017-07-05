@@ -13,6 +13,7 @@ import { LoginService } from "../../services/login.service";
 })
 export class CreatePollComponent implements OnInit {
   title: string;
+  option: string;
   options: any;
 
   constructor(
@@ -23,6 +24,7 @@ export class CreatePollComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.option = '';
     this.options = [];
   }
 
@@ -30,8 +32,9 @@ export class CreatePollComponent implements OnInit {
    * Push option to options array
    * @param option {string}
    */
-  addOption(option) {
-    this.options.push(option);
+  addOption() {
+    this.options.push(this.option);
+    this.option = '';
   }
 
   /**
