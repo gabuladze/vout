@@ -115,7 +115,10 @@ export class PollsService {
     headers.append('Authorization', this._login.getToken());
 
     return this.http.post('http://localhost:3500/api/polls/destroy',
-      { id: id },
+      {
+        id: id,
+        userId: this._login.getProfile()['id']
+      },
       { headers: headers })
       .map(res => res.json());
   }

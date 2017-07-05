@@ -128,7 +128,7 @@ router.post('/create', auth, (req, res, next) => {
  * The user has to be authenticated, thus the auth middleware is used
  */
 router.post('/destroy', auth, (req, res, next) => {
-  Poll.remove({ _id: req.body.id }, function (err) {
+  Poll.remove({ _id: req.body.id, _creator: req.body.userId }, function (err) {
     if (err) {
       return res.json({ success: false, message: JSON.stringify(err) });
     } else {
