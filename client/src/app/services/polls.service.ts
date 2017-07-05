@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from "@angular/http";
+import { LoginService } from "./login.service";
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -7,7 +8,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class PollsService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private _login: LoginService) { }
 
   /**
    * Retrieve the list of all polls from server
@@ -58,6 +59,7 @@ export class PollsService {
   voteForPollCustom(pollId: string, option: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', this._login.getToken());
 
     return this.http.post('http://localhost:3500/api/polls/vote/custom',
       {
@@ -77,6 +79,7 @@ export class PollsService {
   createPoll(title, options, userId) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', this._login.getToken());
 
     return this.http.post('http://localhost:3500/api/polls/create',
       {
@@ -95,6 +98,7 @@ export class PollsService {
   getUserPolls(userId: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', this._login.getToken());
 
     return this.http.get('http://localhost:3500/api/polls/user/' + userId,
       { headers: headers })
@@ -108,6 +112,7 @@ export class PollsService {
   deletePoll(id: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', this._login.getToken());
 
     return this.http.post('http://localhost:3500/api/polls/destroy',
       { id: id },
