@@ -57,6 +57,13 @@ export class LoginService implements OnInit {
   }
 
   /**
+   * Get user's token from local storage
+   */
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  /**
    * Save profile to local storage
    * @param token {string}
    * @param profile {object}
