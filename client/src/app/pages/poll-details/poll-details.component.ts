@@ -59,7 +59,6 @@ export class PollDetailsComponent implements OnInit {
             this.router.navigate(['/polls']);
           } else {
             this._flashMessage.show(data.message, { cssClass: 'alert-danger', timeout: 5000 });
-            this.router.navigate(['/polls/:id/view', this.poll._id]);
           }
         });
       } else {
@@ -69,7 +68,6 @@ export class PollDetailsComponent implements OnInit {
             this.router.navigate(['/polls']);
           } else {
             this._flashMessage.show(data.message, { cssClass: 'alert-danger', timeout: 5000 });
-            this.router.navigate(['/polls/:id/view', this.poll._id]);
           }
         });
       }
