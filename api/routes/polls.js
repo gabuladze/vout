@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Poll = require('../models/Poll.js');
+const auth = require('../middleware/auth.js');
 
 /**
  * Return all polls ordered by title in desc order
@@ -70,8 +71,9 @@ router.post('/vote', (req, res, next) => {
 /**
  * Vote for a single custom option in a single poll
  * The request should have the option (string) & the id of poll
+ * The user has to be authenticated, thus the auth middleware is used
  */
-router.post('/vote/custom', (req, res, next) => {
+router.post('/vote/custom', auth, (req, res, next) => {
   Poll.findById(req.body.poll, 'options')
     .exec(function (err, poll) {
       if (err) throw err;
@@ -97,8 +99,9 @@ router.post('/vote/custom', (req, res, next) => {
  * Create a single poll
  * The request should include title, array of options (strings), author's
  * user id
+ * The user has to be authenticated, thus the auth middleware is used
  */
-router.post('/create', (req, res, next) => {
+router.post('/create', auth, (req, res, next) => {
   let poll = new Poll({
     title: req.body.title,
     options: [],
@@ -122,8 +125,9 @@ router.post('/create', (req, res, next) => {
 /**
  * Delete a single poll
  * The request should include an id of poll to delete
+ * The user has to be authenticated, thus the auth middleware is used
  */
-router.post('/destroy', (req, res, next) => {
+router.post('/destroy', auth, (req, res, next) => {
   Poll.remove({ _id: req.body.id }, function (err) {
     if (err) {
       return res.json({ success: false, message: JSON.stringify(err) });
@@ -135,8 +139,9 @@ router.post('/destroy', (req, res, next) => {
 
 /**
  * Fetch all polls that belong to a user with certain id
+ * The user has to be authenticated, thus the auth middleware is used
  */
-router.get('/user/:id', (req, res, next) => {
+router.get('/user/:id', auth, (req, res, next) => {
   Poll.find({ _creator: req.params.id })
     .select({ title: 1, _id: 1 })
     .lean()
