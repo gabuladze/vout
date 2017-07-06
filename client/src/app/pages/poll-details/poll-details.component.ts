@@ -45,8 +45,13 @@ export class PollDetailsComponent implements OnInit {
           this.pieChartLabels.push(option.name);
         });
 
-        let userId = this._login.getProfile()['id'];
-        this.author = data.poll._creator == userId ? true : false;
+        // Check if current user is the author
+        if (this._login.loggedIn()) {
+          let userId = this._login.getProfile()['id'];
+          this.author = data.poll._creator == userId ? true : false;
+        } else {
+          this.author = false;
+        }
       });
 
       this.url = 'https://twitter.com/intent/tweet?url=' + document.location.href;
