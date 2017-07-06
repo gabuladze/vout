@@ -21,6 +21,7 @@ export class PollDetailsComponent implements OnInit {
   option: string;
   author: boolean;
   customOption: boolean;
+  url: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,6 +48,8 @@ export class PollDetailsComponent implements OnInit {
         let userId = this._login.getProfile()['id'];
         this.author = data.poll._creator == userId ? true : false;
       });
+
+      this.url = 'https://twitter.com/intent/tweet?url=' + document.location.href;
     });
   }
 
