@@ -17,7 +17,7 @@ export class PollsService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.get('http://localhost:3500/api/polls')
+    return this.http.get('/api/polls')
       .map(res => res.json());
   }
 
@@ -29,7 +29,7 @@ export class PollsService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.get('http://localhost:3500/api/polls/' + id)
+    return this.http.get('/api/polls/' + id)
       .map(res => res.json());
   }
 
@@ -42,7 +42,7 @@ export class PollsService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post('http://localhost:3500/api/polls/vote',
+    return this.http.post('/api/polls/vote',
       {
         poll: pollId,
         option: optionId
@@ -61,7 +61,7 @@ export class PollsService {
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', this._login.getToken());
 
-    return this.http.post('http://localhost:3500/api/polls/vote/custom',
+    return this.http.post('/api/polls/vote/custom',
       {
         poll: pollId,
         option: option
@@ -81,7 +81,7 @@ export class PollsService {
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', this._login.getToken());
 
-    return this.http.post('http://localhost:3500/api/polls/create',
+    return this.http.post('/api/polls/create',
       {
         title: title,
         options: options,
@@ -100,7 +100,7 @@ export class PollsService {
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', this._login.getToken());
 
-    return this.http.get('http://localhost:3500/api/polls/user/' + userId,
+    return this.http.get('/api/polls/user/' + userId,
       { headers: headers })
       .map(res => res.json());
   }
@@ -114,7 +114,7 @@ export class PollsService {
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', this._login.getToken());
 
-    return this.http.post('http://localhost:3500/api/polls/destroy',
+    return this.http.post('/api/polls/destroy',
       {
         id: id,
         userId: this._login.getProfile()['id']

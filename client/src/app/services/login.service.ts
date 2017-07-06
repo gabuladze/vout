@@ -28,7 +28,7 @@ export class LoginService implements OnInit {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.post('http://localhost:3500/api/auth/login', data, { headers: headers })
+      this.http.post('/api/auth/login', data, { headers: headers })
         .map(res => res.json())
         .subscribe(r => {
           if (r.success) {
@@ -94,7 +94,7 @@ export class LoginService implements OnInit {
         headers.append('Content-Type', 'application/json');
 
         let email = this.getProfile().email;
-        this.http.post('http://localhost:3500/api/auth/logout', email, { headers: headers })
+        this.http.post('/api/auth/logout', email, { headers: headers })
           .map(res => res.json())
           .subscribe(data => {
             if (data.success) {
