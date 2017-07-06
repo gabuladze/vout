@@ -32,9 +32,9 @@
           <iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 38px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;"
             tabindex="0" vspace="0" width="100%" id="I0_1498063455178" name="I0_1498063455178" src="https://apis.google.com/u/0/se/0/_/+1/fastbutton?usegapi=1&amp;annotation=none&amp;origin=https%3A%2F%2Fvout.herokuapp.com&amp;url=https%3A%2F%2Fvout.herokuapp.com%2Fpolls%2Fview%2F5797b84d7646e61100358125&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.3t1xUeVe_Z4.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAGLTcCN4hcAMb3eb3WPJTJu8oC1Cduzc2g#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1498063455178&amp;parent=https%3A%2F%2Fvout.herokuapp.com&amp;pfname=&amp;rpctoken=29886011"
             data-gapiattached="true" title="+1"></iframe>
-        </div>
-        <a class="btn btn-sm btn-default btn-twitter" href="https://twitter.com/intent/tweet?url=https://vout.herokuapp.com/polls/view/5797b84d7646e61100358125"
-          target="_blank"><i class="fa fa-twitter"></i></a>-->
+        </div>-->
+        <a class="btn btn-sm btn-default btn-twitter" [href]="url"
+          target="_blank"><i class="fa fa-twitter"></i></a>
         </div>
         <button class="btn btn-danger" *ngIf="author" (click)="onDeletePollClick()">Delete poll</button>
       </div>
