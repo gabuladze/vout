@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   user: any;
 
   constructor(
-    private _login: LoginService,
+    public _login: LoginService,
     private _flashMessage: FlashMessagesService
   ) {
 
