@@ -64,16 +64,6 @@ export class LoginService implements OnInit {
   }
 
   /**
-   * Save profile to local storage
-   * @param token {string}
-   * @param profile {object}
-   */
-  saveProfile(token: string, profile: object) {
-    localStorage.setItem('token', token);
-    localStorage.setItem('profile', JSON.stringify(profile));
-  }
-
-  /**
    * Check if the token is in localstorage
    * If yes, the user is logged in
    */
